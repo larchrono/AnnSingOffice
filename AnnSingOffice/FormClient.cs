@@ -13,31 +13,62 @@ using System.Windows.Forms;
 using AnnSingOffice.Class;
 using Newtonsoft.Json;
 
+//Application.ExitThread();
+//System.Environment.Exit(0);
+
 namespace AnnSingOffice
 {
     public partial class FormClient : FormExtension
     {
         //String Pre-define
         const string groupBoxPretext = "編號：";
+        const string _TABLENAME = "ClientData";
 
         int nowSelectListId;
         List<ClientData> clientList;
 
         ClientData CurrentClientData;
 
+        List<TextBox> listTextBox = new List<TextBox>();
+
+        void TestReigon()
+        {
+
+        }
+
         public FormClient()
         {
             InitializeComponent();
-            //Application.ExitThread();
-            //System.Environment.Exit(0);
-            
+
+            listTextBox.Add(textName);
+            listTextBox.Add(textSimName);
+            listTextBox.Add(textAddress);
+            listTextBox.Add(textHomeNumber);
+            listTextBox.Add(textPhoneNumber);
+            listTextBox.Add(textFax);
+            listTextBox.Add(textTaxId);
+
+            listTextBox.Add(textEngName);
+            listTextBox.Add(textManager);
+            listTextBox.Add(textContactMan);
+            listTextBox.Add(textWebsite);
+            listTextBox.Add(textEmail);
+            listTextBox.Add(textComType);
+            listTextBox.Add(textTaxType);
+
+            listTextBox.Add(textMemo);
         }
 
-
+        /// <summary>
+        /// 在這個視窗被顯示時執行
+        /// </summary>
         public override void ActiveWork()
         {
             base.ActiveWork();
-            UpdateClientListView();
+            UpdateClientListAll();
+
+            if (!SQLManager.CheckTableExist(_TABLENAME))
+                SQLManager.CreateClientData();
 
             //listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -68,106 +99,97 @@ namespace AnnSingOffice
             return CurrentClientData;
         }
 
-        void InsertClientToSQL(ClientData data)
+        void UpdateFormContent(ClientData data)
         {
-            using (var cn = new SQLiteConnection(AnnGlobal.cnStr))
-            {
-                //1) 可執行SQL資料更新指令，支援參數
-                //2) 以陣列方式提供多組參數，可重複執行同一SQL指令
+            // 更新內容的標題流水號，更新日期
+            string Cid = data.Id.ToString();
+            string date = data.SaveDate.ToString("yyyy-MM-dd  HH:mm");
+            groupBoxClientData.Text = groupBoxPretext + Cid + "　　" + date;
 
-                //cn.Execute(@"INSERT INTO ClientData")
+            textName.Text = data.Name;
+            textSimName.Text = data.SimpleName;
+            textAddress.Text = data.Address;
+            textHomeNumber.Text = data.HomeNumber;
+            textPhoneNumber.Text = data.PhoneNumber;
+            textFax.Text = data.Fax;
+            textTaxId.Text = data.TaxId;
 
-               // cn.Execute(@"INSERT INTO ClientData VALUES (NULL , @Name , @SimpleName , @Address , @PhoneNumber , @Fax , @TaxId , @Email , @Date , @Memo)",
-               //     new { Name = name, SimpleName = simpleName, Address = addr, PhoneNumber = number, Fax = fax, TaxId = taxId, Email = email, Date = DateTime.Now, Memo = memo });
-            }
+            textEngName.Text = data.EnglishName;
+            textManager.Text = data.Manager;
+            textContactMan.Text = data.ContactMan;
+            textWebsite.Text = data.Website;
+            textEmail.Text = data.Email;
+            textComType.Text = data.ComType;
+            textTaxType.Text = data.TaxType;
+
+            textMemo.Text = data.Memo;
         }
 
-        void ListDataAdd(string name, string simpleName, string addr, string number, string fax, string taxId, string email)
+        void UpdateClientList(List<ClientData> list)
         {
-            int useId = listView1.Items.Count;
-            ListViewItem temp = new ListViewItem();
-            temp.Text = useId.ToString();
-            temp.SubItems.Add(simpleName);
-            listView1.Items.Add(temp);
-            ClearTextBox();
+            listViewClients.Items.Clear();
+
+            if (list == null)
+                return;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                ListViewItem temp = new ListViewItem();
+                temp.Text = list[i].Id.ToString();
+                temp.SubItems.Add(list[i].SimpleName);
+
+                listViewClients.Items.Add(temp);
+            }
         }
 
         /// <summary>
         /// 更新ListView的內容，並且更新clientList這個List變數
         /// </summary>
-        public void UpdateClientListView()
+        public void UpdateClientListAll()
         {
-            listView1.Items.Clear();
-
-            using (var cn = new SQLiteConnection(AnnGlobal.cnStr))
-            {
-                clientList = cn.Query<ClientData>("SELECT * FROM ClientData").ToList();
-            }
-            if (clientList == null)
-                return;
-            for(int i = 0; i < clientList.Count; i++)
-            {
-                ListViewItem temp = new ListViewItem();
-                temp.Text = clientList[i].Id.ToString();
-                temp.SubItems.Add(clientList[i].SimpleName);
-                listView1.Items.Add(temp);
-            }
+            clientList = SQLManager.GetClientDataList();
+            UpdateClientList(clientList);
         }
 
         void ClearTextBox()
         {
-            textName.Text = "";
-            textSimName.Text = "";
-            textAddress.Text = "";
-            textHomeNumber.Text = "";
-            textFax.Text = "";
-            textTaxId.Text = "";
-            textWebsite.Text = "";
-            textMemo.Text = "";
+            foreach(TextBox box in listTextBox) {
+                box.Text = "";
+            }
         }
-
 
         private void buttonTest_Click(object sender, EventArgs e)
         {
-
+            TestReigon();
         }
 
         private void buttonAddData_Click(object sender, EventArgs e)
         {
             var clientData = GenerateCurrentClientData();
-            InsertClientToSQL(clientData);
-            UpdateClientListView();
-            
-            //ListDataAdd(name, simpleName, addr, number,fax,taxId,email);
+            SQLManager.InsertClientData(clientData);
+            UpdateClientListAll();
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             if (clientList == null)
                 return;
+            if (nowSelectListId >= clientList.Count)
+                return;
             if (clientList[nowSelectListId] == null)
                 return;
+
+            DialogResult result = MessageBox.Show("確認覆蓋資料?", "系統訊息", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                return;
+
             int updateId = clientList[nowSelectListId].Id;
 
-            using (var cn = new SQLiteConnection(AnnGlobal.cnStr))
-            {
+            ClientData data = GenerateCurrentClientData();
+            data.Id = updateId;
 
-                string strSql = @"UPDATE ClientData SET 
-                                Name = @Name,
-                                SimpleName = @SimpleName,
-                                Address = @Address,
-                                PhoneNumber = @PhoneNumber,
-                                Fax = @Fax,
-                                TaxId = @TaxId,
-                                Email = @Email,
-                                Memo = @Memo 
-                                WHERE Id = @Id";
-
-                ClientData datas = new ClientData(updateId, textName.Text, textSimName.Text, textAddress.Text, textHomeNumber.Text, textFax.Text, textTaxId.Text, textWebsite.Text, textMemo.Text);
-                cn.Execute(strSql, datas);
-
-            }
-            UpdateClientListView();
+            SQLManager.UpdateClientData(data);
+            UpdateClientListAll();
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -184,17 +206,8 @@ namespace AnnSingOffice
                 nowSelectListId = listView.SelectedItems[0].Index;
                 if (clientList[nowSelectListId] == null)
                     return;
-                string Cid = clientList[nowSelectListId].Id.ToString();
-                groupBox1.Text = groupBoxPretext + Cid;
 
-                textName.Text = clientList[nowSelectListId].Name;
-                textSimName.Text = clientList[nowSelectListId].SimpleName;
-                textAddress.Text = clientList[nowSelectListId].Address;
-                textHomeNumber.Text = clientList[nowSelectListId].PhoneNumber;
-                textFax.Text = clientList[nowSelectListId].Fax;
-                textTaxId.Text = clientList[nowSelectListId].TaxId;
-                textWebsite.Text = clientList[nowSelectListId].Email;
-                textMemo.Text = clientList[nowSelectListId].Memo;
+                UpdateFormContent(clientList[nowSelectListId]);
             }
         }
 
@@ -206,36 +219,31 @@ namespace AnnSingOffice
 
                 if (goalStr == "")
                 {
-                    UpdateClientListView();
+                    UpdateClientListAll();
                 }
                 else
                 {
-                    goalStr = "%" + goalStr + "%";
-
-                    //QueryFirstOrDefault
-                    using (var cn = new SQLiteConnection(AnnGlobal.cnStr))
-                    {
-                        string strSql = "SELECT * FROM ClientData WHERE SimpleName LIKE @SimpleName";
-                        clientList = cn.Query<ClientData>(strSql, new { SimpleName = goalStr }).ToList();
-                    }
-
-                    if (clientList == null)
-                        return;
-
-                    listView1.Items.Clear();
-                    for (int i = 0; i < clientList.Count; i++)
-                    {
-                        ListViewItem temp = new ListViewItem();
-                        temp.Text = clientList[i].Id.ToString();
-                        temp.SubItems.Add(clientList[i].SimpleName);
-                        listView1.Items.Add(temp);
-                    }
+                    clientList = SQLManager.SelectClientDataSimpleName(goalStr);
+                    UpdateClientList(clientList);
                 }
             }
         }
 
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (nowSelectListId >= clientList.Count)
+                return;
+            if (clientList[nowSelectListId] == null)
+                return;
 
+            string targetName = clientList[nowSelectListId].SimpleName;
+            DialogResult result = MessageBox.Show("確認刪除[" + targetName + "]?", "系統訊息", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                return;
 
+            SQLManager.DeleteClientData(clientList[nowSelectListId].Id);
 
+            UpdateClientListAll();
+        }
     }
 }

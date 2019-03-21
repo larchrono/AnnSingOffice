@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnnSingOffice.Class
 {
-    class ClientData
+    public class ClientData
     {
         // Top Part
         public int Id { get; set; }
@@ -39,19 +35,65 @@ namespace AnnSingOffice.Class
             Name = "None";
         }
 
-        // @Name , @SimpleName , @Address , @PhoneNumber , @Fax , @TaxId , @Email @Date
-
-        public ClientData(int id,string name, string simpleName, string addr, string phoneNumber, string fax, string taxId, string email, string memo)
+        public static string GenerateCommand_Create()
         {
-            this.Id = id;
-            this.Name = name;
-            this.SimpleName = simpleName;
-            this.Address = addr;
-            this.PhoneNumber = phoneNumber;
-            this.Fax = fax;
-            this.TaxId = taxId;
-            this.Email = email;
-            this.Memo = memo;
+            return @"CREATE TABLE ClientData (
+                        Id INTEGER PRIMARY KEY NOT NULL,
+                        Name VARCHAR(32) NOT NULL,
+                        SimpleName VARCHAR(32),
+                        Address VARCHAR(64),
+                        HomeNumber VARCHAR(16),
+                        PhoneNumber VARCHAR(16),
+                        Fax VARCHAR(16),
+                        TaxId VARCHAR(16),
+
+                        EnglishName VARCHAR(32),
+                        Manager VARCHAR(32),
+                        ContactMan VARCHAR(32),
+                        Website VARCHAR(64),
+                        Email VARCHAR(32),
+                        ComType VARCHAR(32),
+                        TaxType VARCHAR(32),
+                        Memo VARCHAR(128),
+
+                        SaveDate DATETIME
+                    )";
+        }
+
+        public static string GenerateCommand_Insert()
+        {
+            //update ***** where 識別碼 = (select max(識別碼) from A where ...)
+            //1) 可執行SQL資料更新指令，支援參數
+            //2) 以陣列方式提供多組參數，可重複執行同一SQL指令
+            // cn.Execute(@"INSERT INTO ClientData VALUES (NULL , @Name , @SimpleName , @Address , @PhoneNumber , @Fax , @TaxId , @Email , @Date , @Memo)",
+            //     new { Name = name, SimpleName = simpleName, Address = addr, PhoneNumber = number, Fax = fax, TaxId = taxId, Email = email, Date = DateTime.Now, Memo = memo });
+
+            return @"INSERT INTO ClientData VALUES (NULL , @Name, @SimpleName, @Address, @HomeNumber, @PhoneNumber, @Fax, @TaxId, @EnglishName, @Manager, @ContactMan, @Website, @Email, @ComType, @TaxType, @Memo, @SaveDate)";
+        }
+
+        public static string GenerateCommand_Update()
+        {
+            return @"UPDATE ClientData SET
+                        Name = @Name,
+                        SimpleName = @SimpleName,
+                        Address = @Address,
+                        HomeNumber = @HomeNumber,
+                        PhoneNumber = @PhoneNumber,
+                        Fax = @Fax,
+                        TaxId = @TaxId,
+
+                        EnglishName = @EnglishName,
+                        Manager = @Manager,
+                        ContactMan = @ContactMan,
+                        Website = @Website,
+                        Email = @Email,
+                        ComType = @ComType,
+                        TaxType = @TaxType,
+                        Memo = @Memo,
+
+                        SaveDate = @SaveDate
+
+                        WHERE Id = @Id";
         }
     }
 }

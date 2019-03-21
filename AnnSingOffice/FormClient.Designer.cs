@@ -33,7 +33,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewProducts = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,7 +42,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxClientData = new System.Windows.Forms.GroupBox();
             this.textMemo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -79,16 +79,17 @@
             this.textName = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewClients = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxClientData.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -107,8 +108,8 @@
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.textBoxSearch);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Controls.Add(this.groupBoxClientData);
+            this.tabPage1.Controls.Add(this.listViewClients);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
@@ -137,7 +138,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.listView2);
+            this.groupBox2.Controls.Add(this.listViewProducts);
             this.groupBox2.Location = new System.Drawing.Point(273, 310);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(918, 194);
@@ -145,9 +146,9 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "出貨紀錄　(點兩下跳入該產品)";
             // 
-            // listView2
+            // listViewProducts
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader6,
             this.columnHeader7,
@@ -156,12 +157,12 @@
             this.columnHeader10,
             this.columnHeader11,
             this.columnHeader12});
-            this.listView2.Location = new System.Drawing.Point(7, 27);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(905, 161);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listViewProducts.Location = new System.Drawing.Point(7, 27);
+            this.listViewProducts.Name = "listViewProducts";
+            this.listViewProducts.Size = new System.Drawing.Size(905, 161);
+            this.listViewProducts.TabIndex = 0;
+            this.listViewProducts.UseCompatibleStateImageBehavior = false;
+            this.listViewProducts.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader4
             // 
@@ -203,50 +204,51 @@
             this.columnHeader12.Text = "備註";
             this.columnHeader12.Width = 159;
             // 
-            // groupBox1
+            // groupBoxClientData
             // 
-            this.groupBox1.Controls.Add(this.textMemo);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.buttonUpdate);
-            this.groupBox1.Controls.Add(this.buttonAddData);
-            this.groupBox1.Controls.Add(this.buttonClear);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.textTaxType);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textComType);
-            this.groupBox1.Controls.Add(this.textEmail);
-            this.groupBox1.Controls.Add(this.textWebsite);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textPhoneNumber);
-            this.groupBox1.Controls.Add(this.textTaxId);
-            this.groupBox1.Controls.Add(this.textFax);
-            this.groupBox1.Controls.Add(this.textHomeNumber);
-            this.groupBox1.Controls.Add(this.textAddress);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textContactMan);
-            this.groupBox1.Controls.Add(this.textManager);
-            this.groupBox1.Controls.Add(this.textSimName);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textEngName);
-            this.groupBox1.Controls.Add(this.textName);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(273, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(918, 291);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "編號：";
+            this.groupBoxClientData.Controls.Add(this.textMemo);
+            this.groupBoxClientData.Controls.Add(this.label11);
+            this.groupBoxClientData.Controls.Add(this.button1);
+            this.groupBoxClientData.Controls.Add(this.buttonDelete);
+            this.groupBoxClientData.Controls.Add(this.buttonUpdate);
+            this.groupBoxClientData.Controls.Add(this.buttonAddData);
+            this.groupBoxClientData.Controls.Add(this.buttonClear);
+            this.groupBoxClientData.Controls.Add(this.label10);
+            this.groupBoxClientData.Controls.Add(this.label9);
+            this.groupBoxClientData.Controls.Add(this.label19);
+            this.groupBoxClientData.Controls.Add(this.label18);
+            this.groupBoxClientData.Controls.Add(this.label17);
+            this.groupBoxClientData.Controls.Add(this.textTaxType);
+            this.groupBoxClientData.Controls.Add(this.label8);
+            this.groupBoxClientData.Controls.Add(this.textComType);
+            this.groupBoxClientData.Controls.Add(this.textEmail);
+            this.groupBoxClientData.Controls.Add(this.textWebsite);
+            this.groupBoxClientData.Controls.Add(this.label16);
+            this.groupBoxClientData.Controls.Add(this.label7);
+            this.groupBoxClientData.Controls.Add(this.label6);
+            this.groupBoxClientData.Controls.Add(this.label5);
+            this.groupBoxClientData.Controls.Add(this.textPhoneNumber);
+            this.groupBoxClientData.Controls.Add(this.textTaxId);
+            this.groupBoxClientData.Controls.Add(this.textFax);
+            this.groupBoxClientData.Controls.Add(this.textHomeNumber);
+            this.groupBoxClientData.Controls.Add(this.textAddress);
+            this.groupBoxClientData.Controls.Add(this.label4);
+            this.groupBoxClientData.Controls.Add(this.textContactMan);
+            this.groupBoxClientData.Controls.Add(this.textManager);
+            this.groupBoxClientData.Controls.Add(this.textSimName);
+            this.groupBoxClientData.Controls.Add(this.label15);
+            this.groupBoxClientData.Controls.Add(this.label14);
+            this.groupBoxClientData.Controls.Add(this.label3);
+            this.groupBoxClientData.Controls.Add(this.textEngName);
+            this.groupBoxClientData.Controls.Add(this.textName);
+            this.groupBoxClientData.Controls.Add(this.label13);
+            this.groupBoxClientData.Controls.Add(this.label2);
+            this.groupBoxClientData.Location = new System.Drawing.Point(273, 12);
+            this.groupBoxClientData.Name = "groupBoxClientData";
+            this.groupBoxClientData.Size = new System.Drawing.Size(918, 291);
+            this.groupBoxClientData.TabIndex = 6;
+            this.groupBoxClientData.TabStop = false;
+            this.groupBoxClientData.Text = "編號：";
             // 
             // textMemo
             // 
@@ -266,7 +268,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(837, 62);
+            this.button1.Location = new System.Drawing.Point(837, 119);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -308,7 +310,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label10.Location = new System.Drawing.Point(243, 160);
+            this.label10.Location = new System.Drawing.Point(243, 197);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(128, 16);
             this.label10.TabIndex = 18;
@@ -391,7 +393,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(13, 200);
+            this.label16.Location = new System.Drawing.Point(13, 164);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(72, 16);
             this.label16.TabIndex = 15;
@@ -409,7 +411,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 160);
+            this.label6.Location = new System.Drawing.Point(13, 197);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 16);
             this.label6.TabIndex = 14;
@@ -418,7 +420,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 126);
+            this.label5.Location = new System.Drawing.Point(13, 129);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 13;
@@ -426,7 +428,7 @@
             // 
             // textPhoneNumber
             // 
-            this.textPhoneNumber.Location = new System.Drawing.Point(91, 193);
+            this.textPhoneNumber.Location = new System.Drawing.Point(91, 159);
             this.textPhoneNumber.Name = "textPhoneNumber";
             this.textPhoneNumber.Size = new System.Drawing.Size(146, 27);
             this.textPhoneNumber.TabIndex = 12;
@@ -440,7 +442,7 @@
             // 
             // textFax
             // 
-            this.textFax.Location = new System.Drawing.Point(91, 157);
+            this.textFax.Location = new System.Drawing.Point(91, 194);
             this.textFax.Name = "textFax";
             this.textFax.Size = new System.Drawing.Size(146, 27);
             this.textFax.TabIndex = 11;
@@ -548,22 +550,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "客戶名稱";
             // 
-            // listView1
+            // listViewClients
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewClients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(7, 44);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(254, 464);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listViewClients.FullRowSelect = true;
+            this.listViewClients.GridLines = true;
+            this.listViewClients.HideSelection = false;
+            this.listViewClients.Location = new System.Drawing.Point(7, 44);
+            this.listViewClients.Name = "listViewClients";
+            this.listViewClients.Size = new System.Drawing.Size(254, 464);
+            this.listViewClients.TabIndex = 2;
+            this.listViewClients.UseCompatibleStateImageBehavior = false;
+            this.listViewClients.View = System.Windows.Forms.View.Details;
+            this.listViewClients.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -598,6 +600,16 @@
             this.tabPage2.Text = "待擴充";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(785, 60);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(127, 29);
+            this.buttonDelete.TabIndex = 21;
+            this.buttonDelete.Text = "刪除資料";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -614,8 +626,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxClientData.ResumeLayout(false);
+            this.groupBoxClientData.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -626,12 +638,12 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewClients;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxClientData;
         private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textAddress;
@@ -654,7 +666,7 @@
         private System.Windows.Forms.TextBox textMemo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listViewProducts;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxSearch;
@@ -679,5 +691,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

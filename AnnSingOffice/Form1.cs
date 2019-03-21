@@ -8,9 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
-using Newtonsoft.Json;
-using Dapper;
 using AnnSingOffice.Class;
 
 namespace AnnSingOffice
@@ -24,12 +21,6 @@ namespace AnnSingOffice
         FormClient formClient;
         FormProduct formProduct;
         FormStock formStock;
-
-        private string dataPath = Properties.Settings.Default.dataPath;
-        private string fileFolder = Properties.Settings.Default.fileFolder;
-
-        static string initPath = @".\Test.sqlite";
-        static string cnStr = "data source=" + initPath;
 
         public Form1()
         {
@@ -51,36 +42,10 @@ namespace AnnSingOffice
             formProduct.TopLevel = false;
             formStock.TopLevel = false;
 
-            InitSQLiteDb();
+            SQLManager.Init();
 
-            if(dataPath == "")
-                AnnGlobal.cnStr = AnnGlobal.preStr + initPath;
-            else
-                AnnGlobal.cnStr = AnnGlobal.preStr + dataPath;
-
-        }
-
-        void InitSQLiteDb()
-        {
-            if (File.Exists(initPath)) return;
-            using (SQLiteConnection cn = new SQLiteConnection(cnStr))
-            {
-                cn.Execute(@"CREATE TABLE ClientData (
-                        Id INTEGER PRIMARY KEY NOT NULL,
-                        Name VARCHAR(32) NOT NULL,
-                        SimpleName VARCHAR(32),
-                        Address VARCHAR(64),
-                        PhoneNumber VARCHAR(16),
-                        Fax VARCHAR(16),
-                        TaxId VARCHAR(16),
-                        Email VARCHAR(32),
-                        Date DATETIME,
-                        Memo VARCHAR(128)
-                    )");
-                dataPath = Properties.Settings.Default.dataPath = Path.GetFullPath(initPath);
-                Properties.Settings.Default.Save();
-                MessageBox.Show("初次使用，已建立sqlite資料表","系統訊息");
-            }
+            //Clear Setting for Debug
+            //Properties.Settings.Default.Reset();
         }
 
         public void SetAllControlsFont(Control.ControlCollection ctrls , int size)
@@ -91,7 +56,6 @@ namespace AnnSingOffice
                     SetAllControlsFont(ctrl.Controls, size);
 
                 ctrl.Font = new Font("新細明體", size);
-
             }
         }
 
@@ -112,6 +76,7 @@ namespace AnnSingOffice
         //將視窗啟動
         private void SetPanelContent(FormExtension form)
         {
+            // ?? maybe add all forms to control will be better
             panelWork.Controls.Add(form);
             form.BringToFront();
             form.Show();
@@ -152,17 +117,13 @@ namespace AnnSingOffice
         {
             if (openFileDialogSQL.ShowDialog() == DialogResult.OK)
             {
-                dataPath = Path.GetFullPath(openFileDialogSQL.FileName);
-                AnnGlobal.cnStr = AnnGlobal.preStr + dataPath;
-                Properties.Settings.Default.dataPath = dataPath;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("已設定sqlite路徑為 " + dataPath, "系統訊息");
+                SQLManager.SetupPath(Path.GetFullPath(openFileDialogSQL.FileName));
             }
         }
 
         private void SQLLocateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("當前sqlite路徑為 " + dataPath, "系統訊息");
+            MessageBox.Show("當前sqlite路徑為 " + SQLManager.SQLPath, "系統訊息");
         }
 
         
