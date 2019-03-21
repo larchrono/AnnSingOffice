@@ -1,0 +1,47 @@
+﻿//SQL 變數類型
+
+// 字串
+// CHAR[(N)]            以空格補足空間至N大小的字串,預設1,最大可設255
+// VARCHAR(N)           不補足，最大為N的字串,最大可設65535
+
+// 日期
+// SMALLDATETIME	    長度為 4 個 bytes；介於 1/1/1900 與 6/6/2079
+//                      範例: '2000-01-01 10:10:10' or '2000-01-01' ,沒填的時間會被補0
+
+// 整數 (括號內為預設最大長度)
+// TINYINT[(4)]	        -128~127
+// SMALLINT[(6)]        -32768~32767
+// MEDIUMINT[(9)]       -8388608~8388607
+// INT[(11)]            -2147683648~2147683647
+
+// 浮點數
+// FLOAT(N,M) / REAL      數字長度N , 小數位數M個的浮點數
+// NUMERIC = DECIMAL
+
+// 二進位,用於儲存檔案圖片類
+// BINARY[(N)]	    指定的長度，不足補0，固定長度N的字串，預設長度為1，最大255
+// VARBINARY(N)   	指定大小的變動長度二進位,最大可指定65535
+// TINYBLOB	        最大255 的變動二進位
+// BLOB             最大65535 的變動二進位
+
+// 特殊
+// ENUM('XS','S','M','L','XL')                      指定表格只能儲存這幾個字串之一
+// SET('MON','TUE','WED','THU','FRI','SAT','SUN')   指定表格只能儲存這幾個字串其中幾個
+
+// 加上 UNSIGNED 關鍵字表示無號數 , EX: SMALLINT(6) UNSIGNED
+// 加上 ZEROFILL 表示數值前方補0至最大長度
+
+
+// SQL 語法
+
+CREATE TABLE		建立表格
+範例:
+CREATE TABLE myTable (ID int(11) NOT NULL auto_increment ,
+					Name char(35) NOT NULL default ' ' ,
+					PRIMARY KEY (ID)
+					) AUTO_INCREMENT=4080 DEFAULT CHARSET=big5
+
+PRIMARY KEY () 哪個值不能重複
+有用到 auto_increment 欄位不需要輸入,新增資料時自動跳過這個欄位的輸入
+
+INSERT INTO myTable (Name) VALUES ('mayuyu')
