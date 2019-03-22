@@ -60,7 +60,7 @@ namespace AnnSingOffice
             UpdateListAll();
 
             if (!SQLManager.CheckTableExist(_TABLENAME))
-                SQLManager.CreateProductData();
+                SQLManager.CreateData(SQLManager.DataType.Product);
         }
 
         void ClearTextBoxShip()
@@ -77,7 +77,43 @@ namespace AnnSingOffice
             {
                 box.Text = "";
             }
+            foreach(PictureBox pbox in listPictureBox)
+            {
+                pbox.Image = null;
+            }
+            comboBoxSimPrice.Text = "";
+            comboBoxSimPrice.Items.Clear();
             ClearTextBoxShip();
+        }
+
+        string ComboBoxToString(ComboBox cb)
+        {
+            string result = "";
+            foreach(var item in cb.Items)
+            {
+                if (result != "")
+                    result += ",";
+                result = result + item.ToString();
+            }
+            return result;
+        }
+
+        void StringToComboBox(string src,ComboBox cb)
+        {
+            cb.Items.Clear();
+            cb.Text = "";
+            if (string.IsNullOrEmpty(src))
+                return;
+            
+            string[] result = src.Split(',');
+            foreach (string s in result)
+            {
+                if (s.Trim() != "")
+                {
+                    cb.Items.Add(s);
+                    cb.SelectedIndex = 0;
+                }
+            }
         }
 
         ProductData GenerateCurrentData()
@@ -93,6 +129,11 @@ namespace AnnSingOffice
             CurrentData.NCOrder = textBoxOrder.Text;
             CurrentData.Machine = textBoxMachine.Text;
             CurrentData.NCNumber = textBoxNC.Text;
+            CurrentData.Price = ComboBoxToString(comboBoxSimPrice);
+
+            CurrentData.Picture_1 = pictureBox1.ImageLocation;
+            CurrentData.Picture_2 = pictureBox2.ImageLocation;
+            CurrentData.Picture_3 = pictureBox3.ImageLocation;
 
             CurrentData.Memo = textBoxMemo.Text;
 
@@ -114,6 +155,19 @@ namespace AnnSingOffice
             textBoxOrder.Text = data.NCOrder;
             textBoxMachine.Text = data.Machine;
             textBoxNC.Text = data.NCNumber;
+            StringToComboBox(data.Price,comboBoxSimPrice);
+
+            pictureBox1.ImageLocation = data.Picture_1;
+            pictureBox2.ImageLocation = data.Picture_2;
+            pictureBox3.ImageLocation = data.Picture_3;
+
+            try
+            {
+                pictureBox1.Load();
+                pictureBox2.Load();
+                pictureBox3.Load();
+            }
+            catch (Exception e) { }
 
             textBoxMemo.Text = data.Memo;
         }
@@ -142,6 +196,17 @@ namespace AnnSingOffice
         {
             dataList = SQLManager.GetDataList(SQLManager.DataType.Product) as List<ProductData>;
             UpdateList(dataList);
+        }
+
+        void SetPictureBoxImage(PictureBox pbox)
+        {
+            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
+            {
+                string file = openFileDialogImage.FileName;
+                //pbox.Image = Image.FromFile(file);
+                pbox.ImageLocation = file;
+                pbox.Load();
+            }
         }
 
         private void listViewProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,6 +260,90 @@ namespace AnnSingOffice
         private void buttonClear_Click(object sender, EventArgs e)
         {
             ClearTextBoxSpec();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            SetPictureBoxImage(pictureBox1);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            SetPictureBoxImage(pictureBox2);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            SetPictureBoxImage(pictureBox3);
+        }
+
+        private void comboBoxSimPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string context = comboBoxSimPrice.Text;
+                comboBoxSimPrice.Items.Add(context);
+                comboBoxSimPrice.Sorted = true;
+
+                //Remove sound
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void comboBoxSimPrice_Leave(object sender, EventArgs e)
+        {
+            string context = comboBoxSimPrice.Text;
+            if (context != "" && !comboBoxSimPrice.Items.Contains(context))
+            {
+                comboBoxSimPrice.Items.Add(context);
+                comboBoxSimPrice.Sorted = true;
+            }
+        }
+
+        private void buttonSimPriceClear_Click(object sender, EventArgs e)
+        {
+            string context = comboBoxSimPrice.Text;
+            comboBoxSimPrice.Items.Remove(context);
+        }
+
+        private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string goalStr = textBoxSearch.Text;
+
+                if (goalStr == "")
+                {
+                    UpdateListAll();
+                }
+                else
+                {
+                    dataList = SQLManager.SelectData(SQLManager.DataType.Product, goalStr) as List<ProductData>;
+                    UpdateList(dataList);
+                }
+
+                //Remove sound
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (nowSelectListId >= dataList.Count)
+                return;
+            if (dataList[nowSelectListId] == null)
+                return;
+
+            string targetName = dataList[nowSelectListId].NCOrder;
+            DialogResult result = MessageBox.Show("確認刪除[" + targetName + "]?", "系統訊息", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                return;
+
+            SQLManager.DeleteData(SQLManager.DataType.Product, dataList[nowSelectListId].Id);
+
+            UpdateListAll();
         }
     }
 }

@@ -35,6 +35,7 @@
             this.檔案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SQLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SQLLocateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.顯示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.字型大小ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
@@ -77,7 +78,8 @@
             // 
             this.檔案ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SQLiteToolStripMenuItem,
-            this.SQLLocateToolStripMenuItem});
+            this.SQLLocateToolStripMenuItem,
+            this.BackupToolStripMenuItem});
             this.檔案ToolStripMenuItem.Name = "檔案ToolStripMenuItem";
             this.檔案ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.檔案ToolStripMenuItem.Text = "檔案";
@@ -95,6 +97,13 @@
             this.SQLLocateToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.SQLLocateToolStripMenuItem.Text = "當前資料庫位置";
             this.SQLLocateToolStripMenuItem.Click += new System.EventHandler(this.SQLLocateToolStripMenuItem_Click);
+            // 
+            // BackupToolStripMenuItem
+            // 
+            this.BackupToolStripMenuItem.Name = "BackupToolStripMenuItem";
+            this.BackupToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.BackupToolStripMenuItem.Text = "備份資料庫";
+            this.BackupToolStripMenuItem.Click += new System.EventHandler(this.BackupToolStripMenuItem_Click);
             // 
             // 顯示ToolStripMenuItem
             // 
@@ -276,6 +285,7 @@
         private System.Windows.Forms.ToolStripMenuItem SQLLocateToolStripMenuItem;
         private System.Windows.Forms.Button buttonShipOrder;
         private System.Windows.Forms.Button buttonPayment;
+        private System.Windows.Forms.ToolStripMenuItem BackupToolStripMenuItem;
     }
 }
 

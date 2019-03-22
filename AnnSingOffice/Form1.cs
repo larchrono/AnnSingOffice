@@ -126,6 +126,21 @@ namespace AnnSingOffice
             MessageBox.Show("當前sqlite路徑為 " + SQLManager.SQLPath, "系統訊息");
         }
 
-        
+        private void BackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(SQLManager.SQLPath);
+            string fileExtension = Path.GetExtension(SQLManager.SQLPath);
+            string filePath = Path.GetDirectoryName(SQLManager.SQLPath);
+            string date = DateTime.Now.ToString(" yyyy-MM-dd HH-mm");
+            string newFile = filePath + @"\" + fileName + date + fileExtension;
+            try {
+                File.Copy(SQLManager.SQLPath, newFile);
+                MessageBox.Show("已備份資料庫:" + newFile, "系統訊息");
+            }
+            catch(Exception ee) {
+                MessageBox.Show(ee.Message.ToString(),"系統訊息");
+            }
+            
+        }
     }
 }

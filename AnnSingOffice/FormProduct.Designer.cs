@@ -45,6 +45,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxData = new System.Windows.Forms.GroupBox();
+            this.buttonSimPriceClear = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -78,6 +79,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxShip.SuspendLayout();
@@ -242,6 +245,7 @@
             // 
             // groupBoxData
             // 
+            this.groupBoxData.Controls.Add(this.buttonSimPriceClear);
             this.groupBoxData.Controls.Add(this.groupBox3);
             this.groupBoxData.Controls.Add(this.textBoxMemo);
             this.groupBoxData.Controls.Add(this.label9);
@@ -272,10 +276,21 @@
             this.groupBoxData.TabStop = false;
             this.groupBoxData.Text = "項次：";
             // 
+            // buttonSimPriceClear
+            // 
+            this.buttonSimPriceClear.Location = new System.Drawing.Point(471, 121);
+            this.buttonSimPriceClear.Name = "buttonSimPriceClear";
+            this.buttonSimPriceClear.Size = new System.Drawing.Size(52, 23);
+            this.buttonSimPriceClear.TabIndex = 19;
+            this.buttonSimPriceClear.Text = "清除";
+            this.buttonSimPriceClear.UseVisualStyleBackColor = true;
+            this.buttonSimPriceClear.Click += new System.EventHandler(this.buttonSimPriceClear_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.buttonAdd);
             this.groupBox3.Controls.Add(this.buttonUpdate);
+            this.groupBox3.Controls.Add(this.buttonDelete);
             this.groupBox3.Controls.Add(this.buttonClear);
             this.groupBox3.Location = new System.Drawing.Point(779, 14);
             this.groupBox3.Name = "groupBox3";
@@ -333,36 +348,45 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Gainsboro;
             this.pictureBox3.Location = new System.Drawing.Point(228, 185);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 15;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Gainsboro;
             this.pictureBox2.Location = new System.Drawing.Point(122, 185);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Gainsboro;
             this.pictureBox1.Location = new System.Drawing.Point(16, 185);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(13, 161);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 16);
+            this.label8.Size = new System.Drawing.Size(86, 16);
             this.label8.TabIndex = 14;
-            this.label8.Text = "圖片";
+            this.label8.Text = "圖片 (點擊)";
             // 
             // textBoxNC
             // 
@@ -442,6 +466,8 @@
             this.comboBoxSimPrice.Name = "comboBoxSimPrice";
             this.comboBoxSimPrice.Size = new System.Drawing.Size(121, 24);
             this.comboBoxSimPrice.TabIndex = 4;
+            this.comboBoxSimPrice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxSimPrice_KeyDown);
+            this.comboBoxSimPrice.Leave += new System.EventHandler(this.comboBoxSimPrice_Leave);
             // 
             // label3
             // 
@@ -496,11 +522,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(115, 12);
+            this.label12.Location = new System.Drawing.Point(83, 12);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 16);
+            this.label12.Size = new System.Drawing.Size(72, 16);
             this.label12.TabIndex = 10;
-            this.label12.Text = "搜尋";
+            this.label12.Text = "搜尋編號";
             // 
             // textBoxSearch
             // 
@@ -508,6 +534,7 @@
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(100, 27);
             this.textBoxSearch.TabIndex = 9;
+            this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
             // 
             // listViewProduct
             // 
@@ -550,6 +577,21 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "待擴充";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialogImage
+            // 
+            this.openFileDialogImage.FileName = "openFileDialogImage";
+            this.openFileDialogImage.Filter = "圖片檔案 (*.jpg)|*.jpg";
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(6, 65);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(121, 33);
+            this.buttonDelete.TabIndex = 0;
+            this.buttonDelete.Text = "刪除資料";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // FormProduct
             // 
@@ -632,5 +674,8 @@
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonAddToShip;
         private System.Windows.Forms.GroupBox groupBoxShip;
+        private System.Windows.Forms.OpenFileDialog openFileDialogImage;
+        private System.Windows.Forms.Button buttonSimPriceClear;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

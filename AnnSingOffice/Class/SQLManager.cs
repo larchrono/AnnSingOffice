@@ -83,135 +83,74 @@ namespace AnnSingOffice
             return tb != null;
         }
 
-        #region ClientData Region
-        public static void CreateClientData()
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                /* 正式.NET 寫法
-                cn.Open();
-                string sql = "create table highscores (name varchar(20), score int)";
-                SQLiteCommand command = new SQLiteCommand(sql, cn);
-                command.ExecuteNonQuery();
-                cn.Clone();
-                */
+        //#region ClientData Region
+        //public static void CreateClientData()
+        //{
+        //    using (SQLiteConnection cn = new SQLiteConnection(connectString))
+        //    {
+        //        /* 正式.NET 寫法
+        //        cn.Open();
+        //        string sql = "create table highscores (name varchar(20), score int)";
+        //        SQLiteCommand command = new SQLiteCommand(sql, cn);
+        //        command.ExecuteNonQuery();
+        //        cn.Clone();
+        //        */
 
-                //Dapper 寫法
-                cn.Execute(ClientData.GenerateCommand_Create());
-            }
-        }
+        //        //Dapper 寫法
+        //        cn.Execute(ClientData.GenerateCommand_Create());
+        //    }
+        //}
 
-        public static List<ClientData> GetClientDataList()
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                var clientList = cn.Query<ClientData>("SELECT * FROM ClientData").ToList();
-                return clientList;
-            }
-        }
+        //public static List<ClientData> GetClientDataList()
+        //{
+        //    using (SQLiteConnection cn = new SQLiteConnection(connectString))
+        //    {
+        //        var clientList = cn.Query<ClientData>("SELECT * FROM ClientData").ToList();
+        //        return clientList;
+        //    }
+        //}
 
-        public static List<ClientData> SelectClientDataSimpleName(string goalString)
-        {
-            goalString = "%" + goalString + "%";
+        //public static List<ClientData> SelectClientDataSimpleName(string goalString)
+        //{
+        //    goalString = "%" + goalString + "%";
 
-            //QueryFirstOrDefault
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string strSql = "SELECT * FROM ClientData WHERE SimpleName LIKE @SimpleName";
-                var clientList = cn.Query<ClientData>(strSql, new { SimpleName = goalString }).ToList();
-                return clientList;
-            }
-        }
+        //    //QueryFirstOrDefault
+        //    using (SQLiteConnection cn = new SQLiteConnection(connectString))
+        //    {
+        //        string strSql = "SELECT * FROM ClientData WHERE SimpleName LIKE @SimpleName";
+        //        var clientList = cn.Query<ClientData>(strSql, new { SimpleName = goalString }).ToList();
+        //        return clientList;
+        //    }
+        //}
 
-        public static void InsertClientData(ClientData clientData)
-        {
-            clientData.SaveDate = DateTime.Now;
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string sqlCommand = ClientData.GenerateCommand_Insert();
-                var excuteResult = cn.Execute(sqlCommand, clientData);
-            }
-        }
+        //public static void InsertClientData(ClientData clientData)
+        //{
+        //    clientData.SaveDate = DateTime.Now;
+        //    using (SQLiteConnection cn = new SQLiteConnection(connectString))
+        //    {
+        //        string sqlCommand = ClientData.GenerateCommand_Insert();
+        //        var excuteResult = cn.Execute(sqlCommand, clientData);
+        //    }
+        //}
 
-        public static void UpdateClientData(ClientData data)
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string strSql = ClientData.GenerateCommand_Update();
-                cn.Execute(strSql, data);
-            }
-        }
+        //public static void UpdateClientData(ClientData data)
+        //{
+        //    using (SQLiteConnection cn = new SQLiteConnection(connectString))
+        //    {
+        //        string strSql = ClientData.GenerateCommand_Update();
+        //        cn.Execute(strSql, data);
+        //    }
+        //}
 
-        public static void DeleteClientData(int cid)
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string strSql = " DELETE FROM ClientData WHERE Id=@Id";
-                cn.Execute(strSql, new { Id = cid });
-            }
-        }
-        #endregion
-
-        public static void CreateProductData()
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                cn.Execute(ProductData.GenerateCommand_Create());
-            }
-        }
-        public static List<ProductData> GetProductDataList()
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                var productData = cn.Query<ProductData>("SELECT * FROM ProductData").ToList();
-                return productData;
-            }
-        }
-
-        public static List<ProductData> SelectProductDataNCOrder(string goalString)
-        {
-            goalString = "%" + goalString + "%";
-
-            //QueryFirstOrDefault
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string strSql = "SELECT * FROM ProductData WHERE NCOrder LIKE @NCOrder";
-                var clientList = cn.Query<ProductData>(strSql, new { NCOrder = goalString }).ToList();
-                return clientList;
-            }
-        }
-
-        public static void InsertProductData(ProductData productData)
-        {
-            productData.SaveDate = DateTime.Now;
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string sqlCommand = ProductData.GenerateCommand_Insert();
-                var excuteResult = cn.Execute(sqlCommand, productData);
-            }
-        }
-
-        public static void UpdateProductData(ProductData data)
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string strSql = ProductData.GenerateCommand_Update();
-                cn.Execute(strSql, data);
-            }
-        }
-
-        public static void DeleteProductData(int cid)
-        {
-            using (SQLiteConnection cn = new SQLiteConnection(connectString))
-            {
-                string strSql = " DELETE FROM ProductData WHERE Id=@Id";
-                cn.Execute(strSql, new { Id = cid });
-            }
-        }
-
-        /// <summary>
-        /// ////////////////
-        /// </summary>
+        //public static void DeleteClientData(int cid)
+        //{
+        //    using (SQLiteConnection cn = new SQLiteConnection(connectString))
+        //    {
+        //        string strSql = " DELETE FROM ClientData WHERE Id=@Id";
+        //        cn.Execute(strSql, new { Id = cid });
+        //    }
+        //}
+        //#endregion
 
         public static void CreateData(DataType type)
         {

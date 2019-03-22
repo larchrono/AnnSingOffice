@@ -68,7 +68,7 @@ namespace AnnSingOffice
             UpdateClientListAll();
 
             if (!SQLManager.CheckTableExist(_TABLENAME))
-                SQLManager.CreateClientData();
+                SQLManager.CreateData(SQLManager.DataType.Client);
 
             //listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -147,7 +147,7 @@ namespace AnnSingOffice
         /// </summary>
         public void UpdateClientListAll()
         {
-            clientList = SQLManager.GetClientDataList();
+            clientList = SQLManager.GetDataList(SQLManager.DataType.Client) as List<ClientData>;
             UpdateClientList(clientList);
         }
 
@@ -166,7 +166,7 @@ namespace AnnSingOffice
         private void buttonAddData_Click(object sender, EventArgs e)
         {
             var clientData = GenerateCurrentClientData();
-            SQLManager.InsertClientData(clientData);
+            SQLManager.InsertData(SQLManager.DataType.Client, clientData);
             UpdateClientListAll();
         }
 
@@ -188,7 +188,7 @@ namespace AnnSingOffice
             ClientData data = GenerateCurrentClientData();
             data.Id = updateId;
 
-            SQLManager.UpdateClientData(data);
+            SQLManager.UpdateData(SQLManager.DataType.Client, data);
             UpdateClientListAll();
         }
 
@@ -223,9 +223,13 @@ namespace AnnSingOffice
                 }
                 else
                 {
-                    clientList = SQLManager.SelectClientDataSimpleName(goalStr);
+                    clientList = SQLManager.SelectData(SQLManager.DataType.Client, goalStr) as List<ClientData>;
                     UpdateClientList(clientList);
                 }
+
+                //Remove sound
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -241,7 +245,7 @@ namespace AnnSingOffice
             if (result == DialogResult.No)
                 return;
 
-            SQLManager.DeleteClientData(clientList[nowSelectListId].Id);
+            SQLManager.DeleteData(SQLManager.DataType.Client, clientList[nowSelectListId].Id);
 
             UpdateClientListAll();
         }
