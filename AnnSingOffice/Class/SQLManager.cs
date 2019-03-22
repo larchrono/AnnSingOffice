@@ -10,6 +10,7 @@ using Dapper;
 using AnnSingOffice.Class;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections;
 
 namespace AnnSingOffice
 {
@@ -22,6 +23,12 @@ namespace AnnSingOffice
         public static string connectString = "";
 
         //private string fileFolder = Properties.Settings.Default.fileFolder;
+
+        public enum DataType
+        {
+            Client,
+            Product
+        }
 
         public static void Init() {
 
@@ -76,6 +83,7 @@ namespace AnnSingOffice
             return tb != null;
         }
 
+        #region ClientData Region
         public static void CreateClientData()
         {
             using (SQLiteConnection cn = new SQLiteConnection(connectString))
@@ -140,6 +148,206 @@ namespace AnnSingOffice
             {
                 string strSql = " DELETE FROM ClientData WHERE Id=@Id";
                 cn.Execute(strSql, new { Id = cid });
+            }
+        }
+        #endregion
+
+        public static void CreateProductData()
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                cn.Execute(ProductData.GenerateCommand_Create());
+            }
+        }
+        public static List<ProductData> GetProductDataList()
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                var productData = cn.Query<ProductData>("SELECT * FROM ProductData").ToList();
+                return productData;
+            }
+        }
+
+        public static List<ProductData> SelectProductDataNCOrder(string goalString)
+        {
+            goalString = "%" + goalString + "%";
+
+            //QueryFirstOrDefault
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                string strSql = "SELECT * FROM ProductData WHERE NCOrder LIKE @NCOrder";
+                var clientList = cn.Query<ProductData>(strSql, new { NCOrder = goalString }).ToList();
+                return clientList;
+            }
+        }
+
+        public static void InsertProductData(ProductData productData)
+        {
+            productData.SaveDate = DateTime.Now;
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                string sqlCommand = ProductData.GenerateCommand_Insert();
+                var excuteResult = cn.Execute(sqlCommand, productData);
+            }
+        }
+
+        public static void UpdateProductData(ProductData data)
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                string strSql = ProductData.GenerateCommand_Update();
+                cn.Execute(strSql, data);
+            }
+        }
+
+        public static void DeleteProductData(int cid)
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                string strSql = " DELETE FROM ProductData WHERE Id=@Id";
+                cn.Execute(strSql, new { Id = cid });
+            }
+        }
+
+        /// <summary>
+        /// ////////////////
+        /// </summary>
+
+        public static void CreateData(DataType type)
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                switch (type)
+                {
+                    case DataType.Client:
+                        cn.Execute(ClientData.GenerateCommand_Create());
+                        break;
+                    case DataType.Product:
+                        cn.Execute(ProductData.GenerateCommand_Create());
+                        break;
+                    default:
+                        MessageBox.Show("創建資料錯誤","Error");
+                        break;
+                }
+            }
+        }
+        public static IList GetDataList(DataType type)
+        {
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                object data;
+                switch (type)
+                {
+                    case DataType.Client:
+                        data = cn.Query<ClientData>("SELECT * FROM ClientData").ToList();
+                        break;
+                    case DataType.Product:
+                        data = cn.Query<ProductData>("SELECT * FROM ProductData").ToList();
+                        break;
+                    default:
+                        MessageBox.Show("獲取資料錯誤", "Error");
+                        data = null;
+                        break;
+                }
+                return data as IList;
+            }
+        }
+
+        public static IList SelectData(DataType type, string goalString)
+        {
+            goalString = "%" + goalString + "%";
+
+            //QueryFirstOrDefault
+            object data;
+            string sqlCommand;
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                switch (type)
+                {
+                    case DataType.Client:
+                        sqlCommand = "SELECT * FROM ClientData WHERE SimpleName LIKE @SimpleName";
+                        data = cn.Query<ClientData>(sqlCommand, new { SimpleName = goalString }).ToList();
+                        break;
+                    case DataType.Product:
+                        sqlCommand = "SELECT * FROM ProductData WHERE NCOrder LIKE @NCOrder";
+                        data = cn.Query<ProductData>(sqlCommand, new { NCOrder = goalString }).ToList();
+                        break;
+                    default:
+                        MessageBox.Show("獲取資料錯誤", "Error");
+                        data = null;
+                        break;
+                }
+                return data as IList;
+            }
+        }
+
+        public static void InsertData(DataType type, AnnBaseData srcData)
+        {
+            string sqlCommand;
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                switch(type)
+                {
+                    case DataType.Client:
+                        (srcData as ClientData).SaveDate = DateTime.Now;
+                        sqlCommand = ClientData.GenerateCommand_Insert();
+                        cn.Execute(sqlCommand, srcData);
+                        break;
+                    case DataType.Product:
+                        (srcData as ProductData).SaveDate = DateTime.Now;
+                        sqlCommand = ProductData.GenerateCommand_Insert();
+                        cn.Execute(sqlCommand, srcData);
+                        break;
+                    default:
+                        MessageBox.Show("插入資料錯誤", "Error");
+                        break;
+                }
+            }
+        }
+
+        public static void UpdateData(DataType type, AnnBaseData data)
+        {
+            string sqlCommand;
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                switch (type)
+                {
+                    case DataType.Client:
+                        (data as ClientData).SaveDate = DateTime.Now;
+                        sqlCommand = ClientData.GenerateCommand_Update();
+                        cn.Execute(sqlCommand, data);
+                        break;
+                    case DataType.Product:
+                        (data as ProductData).SaveDate = DateTime.Now;
+                        sqlCommand = ProductData.GenerateCommand_Update();
+                        cn.Execute(sqlCommand, data);
+                        break;
+                    default:
+                        MessageBox.Show("更新資料錯誤", "Error");
+                        break;
+                }
+            }
+        }
+
+        public static void DeleteData(DataType type, int cid)
+        {
+            string sqlCommand;
+            using (SQLiteConnection cn = new SQLiteConnection(connectString))
+            {
+                switch (type)
+                {
+                    case DataType.Client:
+                        sqlCommand = " DELETE FROM ClientData WHERE Id=@Id";
+                        cn.Execute(sqlCommand, new { Id = cid });
+                        break;
+                    case DataType.Product:
+                        sqlCommand = " DELETE FROM ProductData WHERE Id=@Id";
+                        cn.Execute(sqlCommand, new { Id = cid });
+                        break;
+                    default:
+                        MessageBox.Show("刪除資料錯誤", "Error");
+                        break;
+                }
             }
         }
     }

@@ -30,8 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.groupBoxShip = new System.Windows.Forms.GroupBox();
+            this.buttonAddToShip = new System.Windows.Forms.Button();
             this.textBoxNumber = new System.Windows.Forms.TextBox();
             this.textBoxTotal = new System.Windows.Forms.TextBox();
             this.textBoxUnit = new System.Windows.Forms.TextBox();
@@ -40,17 +40,20 @@
             this.label13 = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.groupBoxRecord = new System.Windows.Forms.GroupBox();
+            this.listViewOutput = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxData = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.textBoxMemo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxNC = new System.Windows.Forms.TextBox();
             this.textBoxMachine = new System.Windows.Forms.TextBox();
@@ -64,25 +67,22 @@
             this.comboBoxSimPrice = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxID = new System.Windows.Forms.TextBox();
-            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxOrder = new System.Windows.Forms.TextBox();
+            this.textBoxSpec = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewProduct = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxShip.SuspendLayout();
+            this.groupBoxRecord.SuspendLayout();
+            this.groupBoxData.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -102,12 +102,12 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.groupBoxShip);
+            this.tabPage1.Controls.Add(this.groupBoxRecord);
+            this.tabPage1.Controls.Add(this.groupBoxData);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.textBoxSearch);
-            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Controls.Add(this.listViewProduct);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -116,32 +116,32 @@
             this.tabPage1.Text = "產品清單";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // groupBoxShip
             // 
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.textBoxNumber);
-            this.groupBox4.Controls.Add(this.textBoxTotal);
-            this.groupBox4.Controls.Add(this.textBoxUnit);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.textBoxPrice);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Location = new System.Drawing.Point(671, 310);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(392, 194);
-            this.groupBox4.TabIndex = 12;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "出貨";
+            this.groupBoxShip.Controls.Add(this.buttonAddToShip);
+            this.groupBoxShip.Controls.Add(this.textBoxNumber);
+            this.groupBoxShip.Controls.Add(this.textBoxTotal);
+            this.groupBoxShip.Controls.Add(this.textBoxUnit);
+            this.groupBoxShip.Controls.Add(this.label15);
+            this.groupBoxShip.Controls.Add(this.label14);
+            this.groupBoxShip.Controls.Add(this.label13);
+            this.groupBoxShip.Controls.Add(this.textBoxPrice);
+            this.groupBoxShip.Controls.Add(this.label11);
+            this.groupBoxShip.Location = new System.Drawing.Point(671, 310);
+            this.groupBoxShip.Name = "groupBoxShip";
+            this.groupBoxShip.Size = new System.Drawing.Size(392, 194);
+            this.groupBoxShip.TabIndex = 12;
+            this.groupBoxShip.TabStop = false;
+            this.groupBoxShip.Text = "出貨";
             // 
-            // button4
+            // buttonAddToShip
             // 
-            this.button4.Location = new System.Drawing.Point(254, 27);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 33);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "新增至出貨單";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonAddToShip.Location = new System.Drawing.Point(254, 27);
+            this.buttonAddToShip.Name = "buttonAddToShip";
+            this.buttonAddToShip.Size = new System.Drawing.Size(121, 33);
+            this.buttonAddToShip.TabIndex = 0;
+            this.buttonAddToShip.Text = "新增至出貨單";
+            this.buttonAddToShip.UseVisualStyleBackColor = true;
             // 
             // textBoxNumber
             // 
@@ -207,28 +207,28 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "數量";
             // 
-            // groupBox2
+            // groupBoxRecord
             // 
-            this.groupBox2.Controls.Add(this.listView2);
-            this.groupBox2.Location = new System.Drawing.Point(273, 310);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(392, 194);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "出貨紀錄　(點兩下跳入該公司)";
+            this.groupBoxRecord.Controls.Add(this.listViewOutput);
+            this.groupBoxRecord.Location = new System.Drawing.Point(273, 310);
+            this.groupBoxRecord.Name = "groupBoxRecord";
+            this.groupBoxRecord.Size = new System.Drawing.Size(392, 194);
+            this.groupBoxRecord.TabIndex = 12;
+            this.groupBoxRecord.TabStop = false;
+            this.groupBoxRecord.Text = "出貨紀錄　(點兩下跳入該公司)";
             // 
-            // listView2
+            // listViewOutput
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewOutput.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5});
-            this.listView2.Location = new System.Drawing.Point(7, 27);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(379, 161);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            this.listViewOutput.Location = new System.Drawing.Point(7, 27);
+            this.listViewOutput.Name = "listViewOutput";
+            this.listViewOutput.Size = new System.Drawing.Size(379, 161);
+            this.listViewOutput.TabIndex = 0;
+            this.listViewOutput.UseCompatibleStateImageBehavior = false;
+            this.listViewOutput.View = System.Windows.Forms.View.Details;
+            this.listViewOutput.SelectedIndexChanged += new System.EventHandler(this.listViewOutput_SelectedIndexChanged);
             // 
             // columnHeader4
             // 
@@ -240,43 +240,43 @@
             this.columnHeader5.Text = "公司名稱";
             this.columnHeader5.Width = 179;
             // 
-            // groupBox1
+            // groupBoxData
             // 
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.textBoxMemo);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.pictureBox2);
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBoxNC);
-            this.groupBox1.Controls.Add(this.textBoxMachine);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBoxLength);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBoxOutter);
-            this.groupBox1.Controls.Add(this.textBoxInner);
-            this.groupBox1.Controls.Add(this.comboBoxSimPrice);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBoxID);
-            this.groupBox1.Controls.Add(this.textBoxName);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(273, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(918, 291);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "項次：";
+            this.groupBoxData.Controls.Add(this.groupBox3);
+            this.groupBoxData.Controls.Add(this.textBoxMemo);
+            this.groupBoxData.Controls.Add(this.label9);
+            this.groupBoxData.Controls.Add(this.pictureBox3);
+            this.groupBoxData.Controls.Add(this.pictureBox2);
+            this.groupBoxData.Controls.Add(this.pictureBox1);
+            this.groupBoxData.Controls.Add(this.label8);
+            this.groupBoxData.Controls.Add(this.textBoxNC);
+            this.groupBoxData.Controls.Add(this.textBoxMachine);
+            this.groupBoxData.Controls.Add(this.label7);
+            this.groupBoxData.Controls.Add(this.label6);
+            this.groupBoxData.Controls.Add(this.label5);
+            this.groupBoxData.Controls.Add(this.textBoxLength);
+            this.groupBoxData.Controls.Add(this.label4);
+            this.groupBoxData.Controls.Add(this.textBoxOutter);
+            this.groupBoxData.Controls.Add(this.textBoxInner);
+            this.groupBoxData.Controls.Add(this.comboBoxSimPrice);
+            this.groupBoxData.Controls.Add(this.label3);
+            this.groupBoxData.Controls.Add(this.label2);
+            this.groupBoxData.Controls.Add(this.textBoxOrder);
+            this.groupBoxData.Controls.Add(this.textBoxSpec);
+            this.groupBoxData.Controls.Add(this.label10);
+            this.groupBoxData.Controls.Add(this.label1);
+            this.groupBoxData.Location = new System.Drawing.Point(273, 12);
+            this.groupBoxData.Name = "groupBoxData";
+            this.groupBoxData.Size = new System.Drawing.Size(918, 291);
+            this.groupBoxData.TabIndex = 11;
+            this.groupBoxData.TabStop = false;
+            this.groupBoxData.Text = "項次：";
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.buttonAdd);
+            this.groupBox3.Controls.Add(this.buttonUpdate);
+            this.groupBox3.Controls.Add(this.buttonClear);
             this.groupBox3.Location = new System.Drawing.Point(779, 14);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(133, 271);
@@ -284,32 +284,35 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "功能表";
             // 
-            // button3
+            // buttonAdd
             // 
-            this.button3.Location = new System.Drawing.Point(6, 232);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 33);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "新增至資料庫";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonAdd.Location = new System.Drawing.Point(6, 232);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(121, 33);
+            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.Text = "新增至資料庫";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // button2
+            // buttonUpdate
             // 
-            this.button2.Location = new System.Drawing.Point(6, 193);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 33);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "更新";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Location = new System.Drawing.Point(6, 193);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(121, 33);
+            this.buttonUpdate.TabIndex = 0;
+            this.buttonUpdate.Text = "更新";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // button1
+            // buttonClear
             // 
-            this.button1.Location = new System.Drawing.Point(6, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 33);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "清空重填";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonClear.Location = new System.Drawing.Point(6, 26);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(121, 33);
+            this.buttonClear.TabIndex = 0;
+            this.buttonClear.Text = "清空重填";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // textBoxMemo
             // 
@@ -327,6 +330,30 @@
             this.label9.Size = new System.Drawing.Size(40, 16);
             this.label9.TabIndex = 16;
             this.label9.Text = "備註";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(228, 185);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox3.TabIndex = 15;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(122, 185);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(16, 185);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
             // 
             // label8
             // 
@@ -434,19 +461,19 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "參考價格";
             // 
-            // textBoxID
+            // textBoxOrder
             // 
-            this.textBoxID.Location = new System.Drawing.Point(344, 21);
-            this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(121, 27);
-            this.textBoxID.TabIndex = 1;
+            this.textBoxOrder.Location = new System.Drawing.Point(344, 21);
+            this.textBoxOrder.Name = "textBoxOrder";
+            this.textBoxOrder.Size = new System.Drawing.Size(121, 27);
+            this.textBoxOrder.TabIndex = 1;
             // 
-            // textBoxName
+            // textBoxSpec
             // 
-            this.textBoxName.Location = new System.Drawing.Point(91, 21);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(168, 27);
-            this.textBoxName.TabIndex = 1;
+            this.textBoxSpec.Location = new System.Drawing.Point(91, 21);
+            this.textBoxSpec.Name = "textBoxSpec";
+            this.textBoxSpec.Size = new System.Drawing.Size(168, 27);
+            this.textBoxSpec.TabIndex = 1;
             // 
             // label10
             // 
@@ -482,21 +509,22 @@
             this.textBoxSearch.Size = new System.Drawing.Size(100, 27);
             this.textBoxSearch.TabIndex = 9;
             // 
-            // listView1
+            // listViewProduct
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewProduct.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(7, 44);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(254, 464);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listViewProduct.FullRowSelect = true;
+            this.listViewProduct.GridLines = true;
+            this.listViewProduct.HideSelection = false;
+            this.listViewProduct.Location = new System.Drawing.Point(7, 44);
+            this.listViewProduct.Name = "listViewProduct";
+            this.listViewProduct.Size = new System.Drawing.Size(254, 464);
+            this.listViewProduct.TabIndex = 0;
+            this.listViewProduct.UseCompatibleStateImageBehavior = false;
+            this.listViewProduct.View = System.Windows.Forms.View.Details;
+            this.listViewProduct.SelectedIndexChanged += new System.EventHandler(this.listViewProduct_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -523,30 +551,6 @@
             this.tabPage2.Text = "待擴充";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(228, 185);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox3.TabIndex = 15;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(122, 185);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox2.TabIndex = 15;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(16, 185);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -563,11 +567,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxShip.ResumeLayout(false);
+            this.groupBoxShip.PerformLayout();
+            this.groupBoxRecord.ResumeLayout(false);
+            this.groupBoxData.ResumeLayout(false);
+            this.groupBoxData.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -580,19 +584,19 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxData;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxSearch;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewProduct;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.GroupBox groupBoxRecord;
+        private System.Windows.Forms.ListView listViewOutput;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxSpec;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxSimPrice;
         private System.Windows.Forms.Label label3;
@@ -612,7 +616,7 @@
         private System.Windows.Forms.TextBox textBoxMemo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.TextBox textBoxOrder;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.TextBox textBoxTotal;
@@ -623,10 +627,10 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.Button buttonAddToShip;
+        private System.Windows.Forms.GroupBox groupBoxShip;
     }
 }

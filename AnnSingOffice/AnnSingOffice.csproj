@@ -65,6 +65,7 @@
     <Compile Include="Class\FormExtension.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Class\ProductData.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

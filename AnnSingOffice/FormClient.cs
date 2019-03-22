@@ -197,7 +197,7 @@ namespace AnnSingOffice
             ClearTextBox();
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listViewClient_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListView listView = (ListView)sender;
 

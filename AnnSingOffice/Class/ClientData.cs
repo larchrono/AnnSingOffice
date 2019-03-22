@@ -2,7 +2,7 @@
 
 namespace AnnSingOffice.Class
 {
-    public class ClientData
+    public class ClientData : AnnBaseData
     {
         // Top Part
         public int Id { get; set; }
