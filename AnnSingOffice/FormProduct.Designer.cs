@@ -49,6 +49,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.textBoxMemo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxShip.SuspendLayout();
@@ -319,6 +319,16 @@
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(6, 65);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(121, 33);
+            this.buttonDelete.TabIndex = 0;
+            this.buttonDelete.Text = "刪除資料";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // buttonClear
             // 
             this.buttonClear.Location = new System.Drawing.Point(6, 26);
@@ -546,6 +556,7 @@
             this.listViewProduct.GridLines = true;
             this.listViewProduct.HideSelection = false;
             this.listViewProduct.Location = new System.Drawing.Point(7, 44);
+            this.listViewProduct.MultiSelect = false;
             this.listViewProduct.Name = "listViewProduct";
             this.listViewProduct.Size = new System.Drawing.Size(254, 464);
             this.listViewProduct.TabIndex = 0;
@@ -582,16 +593,6 @@
             // 
             this.openFileDialogImage.FileName = "openFileDialogImage";
             this.openFileDialogImage.Filter = "圖片檔案 (*.jpg)|*.jpg";
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Location = new System.Drawing.Point(6, 65);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(121, 33);
-            this.buttonDelete.TabIndex = 0;
-            this.buttonDelete.Text = "刪除資料";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // FormProduct
             // 

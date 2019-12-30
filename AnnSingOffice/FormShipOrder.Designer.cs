@@ -41,6 +41,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonLastCreate = new System.Windows.Forms.Button();
             this.buttonRemoveProduct = new System.Windows.Forms.Button();
+            this.buttonConform = new System.Windows.Forms.Button();
             this.buttonAddProduct = new System.Windows.Forms.Button();
             this.buttonLazy = new System.Windows.Forms.Button();
             this.buttonSelectClient = new System.Windows.Forms.Button();
@@ -65,6 +66,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button8 = new System.Windows.Forms.Button();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -86,6 +88,8 @@
             this.tabPage1.Controls.Add(this.listViewProduct);
             this.tabPage1.Controls.Add(this.buttonLastCreate);
             this.tabPage1.Controls.Add(this.buttonRemoveProduct);
+            this.tabPage1.Controls.Add(this.buttonReset);
+            this.tabPage1.Controls.Add(this.buttonConform);
             this.tabPage1.Controls.Add(this.buttonAddProduct);
             this.tabPage1.Controls.Add(this.buttonLazy);
             this.tabPage1.Controls.Add(this.buttonSelectClient);
@@ -128,7 +132,11 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
+            this.listViewProduct.FullRowSelect = true;
+            this.listViewProduct.GridLines = true;
+            this.listViewProduct.HideSelection = false;
             this.listViewProduct.Location = new System.Drawing.Point(31, 217);
+            this.listViewProduct.MultiSelect = false;
             this.listViewProduct.Name = "listViewProduct";
             this.listViewProduct.Size = new System.Drawing.Size(1018, 287);
             this.listViewProduct.TabIndex = 4;
@@ -142,32 +150,37 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "產品編號";
-            this.columnHeader2.Width = 86;
+            this.columnHeader2.Width = 148;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "品名規格";
-            this.columnHeader3.Width = 83;
+            this.columnHeader3.Width = 159;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "數量";
+            this.columnHeader4.Width = 71;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "單位";
+            this.columnHeader5.Width = 74;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "單價";
+            this.columnHeader6.Width = 73;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "小計";
+            this.columnHeader7.Width = 95;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "備註";
+            this.columnHeader8.Width = 285;
             // 
             // buttonLastCreate
             // 
@@ -187,6 +200,15 @@
             this.buttonRemoveProduct.Text = "移除產品";
             this.buttonRemoveProduct.UseVisualStyleBackColor = true;
             // 
+            // buttonConform
+            // 
+            this.buttonConform.Location = new System.Drawing.Point(1055, 448);
+            this.buttonConform.Name = "buttonConform";
+            this.buttonConform.Size = new System.Drawing.Size(146, 56);
+            this.buttonConform.TabIndex = 3;
+            this.buttonConform.Text = "確定";
+            this.buttonConform.UseVisualStyleBackColor = true;
+            // 
             // buttonAddProduct
             // 
             this.buttonAddProduct.Location = new System.Drawing.Point(31, 179);
@@ -195,6 +217,7 @@
             this.buttonAddProduct.TabIndex = 3;
             this.buttonAddProduct.Text = "加入產品";
             this.buttonAddProduct.UseVisualStyleBackColor = true;
+            this.buttonAddProduct.Click += new System.EventHandler(this.buttonAddProduct_Click);
             // 
             // buttonLazy
             // 
@@ -213,6 +236,7 @@
             this.buttonSelectClient.TabIndex = 2;
             this.buttonSelectClient.Text = "選擇";
             this.buttonSelectClient.UseVisualStyleBackColor = true;
+            this.buttonSelectClient.Click += new System.EventHandler(this.buttonSelectClient_Click);
             // 
             // buttonContact
             // 
@@ -222,6 +246,7 @@
             this.buttonContact.TabIndex = 2;
             this.buttonContact.Text = "預設";
             this.buttonContact.UseVisualStyleBackColor = true;
+            this.buttonContact.Click += new System.EventHandler(this.buttonContact_Click);
             // 
             // buttonCreateNo
             // 
@@ -231,6 +256,7 @@
             this.buttonCreateNo.TabIndex = 2;
             this.buttonCreateNo.Text = "自動產生";
             this.buttonCreateNo.UseVisualStyleBackColor = true;
+            this.buttonCreateNo.Click += new System.EventHandler(this.buttonCreateNo_Click);
             // 
             // buttonToday
             // 
@@ -240,6 +266,7 @@
             this.buttonToday.TabIndex = 2;
             this.buttonToday.Text = "使用今日";
             this.buttonToday.UseVisualStyleBackColor = true;
+            this.buttonToday.Click += new System.EventHandler(this.buttonToday_Click);
             // 
             // textBoxClientTaxId
             // 
@@ -289,6 +316,7 @@
             // 
             // textBoxShipClient
             // 
+            this.textBoxShipClient.Enabled = false;
             this.textBoxShipClient.Location = new System.Drawing.Point(531, 63);
             this.textBoxShipClient.Name = "textBoxShipClient";
             this.textBoxShipClient.Size = new System.Drawing.Size(217, 27);
@@ -390,6 +418,15 @@
             this.button8.Text = "確認列印";
             this.button8.UseVisualStyleBackColor = true;
             // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(1055, 6);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(146, 56);
+            this.buttonReset.TabIndex = 3;
+            this.buttonReset.Text = "清除重填";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            // 
             // FormShipOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -447,5 +484,7 @@
         private System.Windows.Forms.Button buttonAddProduct;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button buttonRemoveProduct;
+        private System.Windows.Forms.Button buttonConform;
+        private System.Windows.Forms.Button buttonReset;
     }
 }

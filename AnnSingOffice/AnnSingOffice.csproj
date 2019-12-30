@@ -68,7 +68,14 @@
     <Compile Include="Class\PaymentData.cs" />
     <Compile Include="Class\ProductData.cs" />
     <Compile Include="Class\ShipData.cs" />
+    <Compile Include="Class\ShipItemListData.cs" />
     <Compile Include="Class\StockData.cs" />
+    <Compile Include="ClientSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientSelect.Designer.cs">
+      <DependentUpon>ClientSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,9 +124,18 @@
     <Compile Include="FormStock.Designer.cs">
       <DependentUpon>FormStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductSelect.Designer.cs">
+      <DependentUpon>ProductSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\SQLManager.cs" />
+    <EmbeddedResource Include="ClientSelect.resx">
+      <DependentUpon>ClientSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
